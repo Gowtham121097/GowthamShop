@@ -4,16 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyShop.Core.Models;
+using MyShop.Core.ViewModels;
 using MyShop.DataAccess.InMemory;
 
 namespace MyShop.WebUI.Controllers
 {
     public class ProductManagementController : Controller
     {
-        ProductRepository context;   
+        ProductRepository context;
+        ProductCaterogyRepository productCategories;
         public ProductManagementController()
         {
             context = new ProductRepository();
+            productCategories = new ProductCaterogyRepository();
         }
         // GET: ProductManager
         public ActionResult Index()
@@ -22,10 +25,13 @@ namespace MyShop.WebUI.Controllers
             return View(products);
         }
 
-        public ActionResult Create()
+        public ActionResult Create() //VG-Example of a view getting data from 2 Models
         {
-            Product product = new Product();
-            return View(product);
+            ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+            viewModel.Product = new Product();
+            viewModel.ProductCategory = productCategories.Collection();
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -54,7 +60,11 @@ namespace MyShop.WebUI.Controllers
             }
             else
             {
-                return View(product);
+                ProductManagerViewModel viewModel = new ProductManagerViewModel();
+
+                viewModel.Product = product;
+                viewModel.ProductCategory = productCategories.Collection();
+                return View(viewModel);
             }
         }
 
