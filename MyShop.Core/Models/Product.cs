@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-   public class Product
+   public class Product : BaseEntity
     {
-        public string Id { get; set; }
+        // public string Id { get; set; }    //Commented out after Inherting BaseEntity class since it has an ID already
 
         [StringLength(20)]
         [DisplayName("Product Name")]
@@ -22,9 +22,9 @@ namespace MyShop.Core.Models
         [Range(0,1000)]
         public decimal Price { get; set; }
 
-        public Product() {
-            this.Id = Guid.NewGuid().ToString();
-        }
+        //public Product() {  //Commenting out since Base entity will take care of ID and ID Generation
+        //    this.Id = Guid.NewGuid().ToString();
+        //}
 
 
 
