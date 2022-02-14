@@ -1,4 +1,5 @@
-﻿using MyShop.Core.Models;
+﻿using MyShop.Core.Contracts;
+using MyShop.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MyShop.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T : BaseEntity //Here we mean when we pass/create an onject it should be of type BaseEntity or the one that implementes the base entity. Because base entity has an ID
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity //Here we mean when we pass/create an onject it should be of type BaseEntity or the one that implementes the base entity. Because base entity has an ID
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items;
