@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/MyShop.Core/App_Start
+/MyShop.Core
+/MyShop.DataAccess.InMemory
+/MyShop.Services
+/MyShop.WebUI.Tests/App_Start
